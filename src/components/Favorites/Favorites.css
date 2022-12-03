@@ -13,13 +13,22 @@
     margin-bottom: 24px;
 }
 
+.favorites__name::placeholder {
+    color: #FFEEDB;
+}
+
 .favorites__list {
     margin-bottom: 24px;
 }
 
+.fav_list_items {
+    display: flex;
+    justify-content: space-between;
+}
+
 .favorites__save {
     border: none;
-    background-color: #496DDB;
+    background-color: #5b76bb;
     padding: 10px 15px;
     color: #FFEEDB;
     font-size: 14px;
@@ -30,4 +39,17 @@
     cursor: pointer;
     opacity: 0.9;
     transition: all 0.2s linear;
+}
+
+.favorites__save:hover:not(:disabled) {
+    opacity: 0.8;
+    cursor: pointer;
+    transition: all 0.2s linear;
+    background-color: #FFEEDB;
+    color: rgba(0, 8, 7);
+}
+
+.favorites__save:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
 }

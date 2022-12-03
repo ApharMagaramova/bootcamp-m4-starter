@@ -1,3 +1,7 @@
+body {
+    color: #FFEEDB;
+}
+
 .search-box__form {
     display: flex;
 }
@@ -16,6 +20,10 @@
     font-size: 14px;
     padding: 5px 10px;
     border: 1px solid rgba(0, 8, 7, .5);
+}
+
+.search-box__form-input::placeholder {
+    color: #FFEEDB;
 }
 
 .search-box__form-submit {

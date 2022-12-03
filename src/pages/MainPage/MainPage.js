@@ -8,23 +8,32 @@ import Favorites from "../../components/Favorites/Favorites";
 const MainPage = () => {
   const [movies, setMovies] = useState([]);
   const [searchValue, setSearchValue] = useState("");
+  const [favorites, setFavorites] = useState([]);
 
+  // getting movie list from api
   const getMovieRequest = async (searchValue) => {
     const url = `http://www.omdbapi.com/?&apikey=1623c971&s=${searchValue}}`;
 
     const response = await fetch(url);
     const responseJson = await response.json();
 
-    console.log(responseJson);
-
     if (responseJson.Search) {
       setMovies(responseJson.Search);
+      console.log(responseJson);
     }
   };
 
   useEffect(() => {
     getMovieRequest(searchValue);
   }, [searchValue]);
+
+  const addFavoriteMovie = (movie) => {
+    if (!favorites.includes(movie)) {
+      const newFavoriteList = [...favorites, movie];
+      setFavorites(newFavoriteList);
+      console.log(favorites);
+    }
+  };
 
   return (
     <div className="main-page">
@@ -38,11 +47,11 @@ const MainPage = () => {
             />
           </div>
           <div className="main-page__movies">
-            <Movies movies={movies} />
+            <Movies movies={movies} clicker={addFavoriteMovie} />
           </div>
         </section>
         <aside className="main-page__favorites">
-          <Favorites />
+          <Favorites movies={favorites} clicker={addFavoriteMovie} />
         </aside>
       </main>
     </div>

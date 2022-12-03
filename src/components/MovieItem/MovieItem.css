@@ -1,7 +1,13 @@
 .movie-item {
     padding: 20px;
-    background-color: #FFEEDB;
+    background-color: #3d5ba7;
     display: flex;
+    transition: transform 0.2s;
+}
+
+.movie-item:hover {
+    cursor: pointer;
+    transform: scale(1.1);
 }
 
 .movie-item__poster {
@@ -25,7 +31,9 @@
 }
 
 .movie-item__add-button:hover {
+    opacity: 0.8;
     cursor: pointer;
-    opacity: 0.9;
     transition: all 0.2s linear;
+    background-color: #FFEEDB;
+    color: rgba(0, 8, 7);
 }
