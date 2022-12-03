@@ -16,7 +16,7 @@ class ListPage extends Component {
     render() { 
         return (
             <div className="list-page">
-                <h1 className="list-page__title">Мой список</h1>
+                <h1 className="list-page__title">My List</h1>
                 <ul>
                     {this.state.movies.map((item) => {
                         return (
