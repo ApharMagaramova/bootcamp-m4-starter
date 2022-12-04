@@ -12,7 +12,7 @@ const MainPage = () => {
 
   // getting movie list from api
   const getMovieRequest = async (searchValue) => {
-    const url = `http://www.omdbapi.com/?&apikey=1623c971&s=${searchValue}}`;
+    const url = `http://www.omdbapi.com/?&apikey=1623c971&s=${searchValue}`;
 
     const response = await fetch(url);
     const responseJson = await response.json();
@@ -27,10 +27,22 @@ const MainPage = () => {
     getMovieRequest(searchValue);
   }, [searchValue]);
 
+  useEffect(() => {
+    const movieFavorites = JSON.parse(
+      localStorage.getItem("react-movie-app-favorites")
+    );
+    setFavorites(movieFavorites);
+  }, []);
+
+  const saveToLocalStorage = (items) => {
+    localStorage.setItem("react-movie-app-favorites", JSON.stringify(items));
+  };
+
   const addFavoriteMovie = (movie) => {
     if (!favorites.includes(movie)) {
       const newFavoriteList = [...favorites, movie];
       setFavorites(newFavoriteList);
+      saveToLocalStorage(newFavoriteList);
       // console.log(favorites);
     }
   };
@@ -41,6 +53,7 @@ const MainPage = () => {
     );
 
     setFavorites(newFavoriteList);
+    saveToLocalStorage(newFavoriteList);
   };
 
   return (

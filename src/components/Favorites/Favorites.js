@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import ListPage from "../../pages/ListPage/ListPage";
 import "./Favorites.css";
 
 const Favorites = (props) => {
@@ -64,7 +63,14 @@ const Favorites = (props) => {
           Save list
         </button>
       ) : (
-        <Link to={"/list"}>Go to the List</Link>
+        <Link
+          to={{
+            pathname: "/list/:id",
+            state: movies,
+          }}
+        >
+          Go to the List
+        </Link>
       )}
     </div>
   );

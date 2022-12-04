@@ -1,34 +1,51 @@
-import React, { Component } from 'react';
-import './ListPage.css';
+import React, { useState, useEffect } from "react";
+import "./ListPage.css";
 
-class ListPage extends Component {
-    state = {
-        movies: [
-            { title: 'The Godfather', year: 1972, imdbID: 'tt0068646' }
-        ]
-    }
-    componentDidMount() {
-        const id = this.props.match.params;
-        console.log(id);
-        // TODO: запрос к сервер на получение списка
-        // TODO: запросы к серверу по всем imdbID
-    }
-    render() { 
-        return (
-            <div className="list-page">
-                <h1 className="list-page__title">My List</h1>
-                <ul>
-                    {this.state.movies.map((item) => {
-                        return (
-                            <li key={item.imdbID}>
-                                <a href="https://www.imdb.com/title/tt0068646/" target="_blank">{item.title} ({item.year})</a>
-                            </li>
-                        );
-                    })}
-                </ul>
-            </div>
-        );
-    }
-}
- 
+const ListPage = (props) => {
+  const [movies, setMovies] = useState([]);
+
+  const { state } = props.location;
+
+  useEffect(() => {
+    setMovies(state);
+    console.log(state);
+    // const id = this.props.match.params;
+    // console.log(id);
+    // TODO: request to the server to receive a list
+    // TODO: requests to the server by all imdbIDs
+  }, [state]);
+
+  return (
+    <div className="list-page">
+      <h1 className="list-page__title">My List</h1>
+      <ul>
+        {movies.map((item) => {
+          return (
+            <li key={item.imdbID} className="movie-items">
+              <a
+                href={`https://www.imdb.com/title/${item.imdbID}/`}
+                rel="noreferrer"
+                target="_blank"
+              >
+                <article className="movie-item">
+                  <img
+                    className="movie-item__poster"
+                    src={item.Poster}
+                    alt={item.Title}
+                  />
+                  <div className="movie-item__info">
+                    <h3 className="movie-item__title">
+                      {item.Title}&nbsp;({item.Year})
+                    </h3>
+                  </div>
+                </article>
+              </a>
+            </li>
+          );
+        })}
+      </ul>
+    </div>
+  );
+};
+
 export default ListPage;
