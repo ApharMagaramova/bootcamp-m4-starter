@@ -11,7 +11,14 @@ const Favorites = (props) => {
 
   useEffect(() => {
     setMovies(props.movies);
-  });
+  }, [props.movies]);
+
+  const handleDelete = (imdbID) => {
+    const newList = [...movies];
+    const index = movies.find((item) => item.imdbID === imdbID);
+    newList.splice(index, 1);
+    setMovies(newList);
+  };
 
   return (
     <div className="favorites">
@@ -26,10 +33,10 @@ const Favorites = (props) => {
         {movies.map((item) => {
           return (
             <div className="fav_list_items">
-              <li key={item.id}>
+              <li key={item.imdbID}>
                 {item.Title} ({item.Year})
               </li>
-              <button>X</button>
+              <button onClick={() => handleDelete(item.imdbID)}>X</button>
             </div>
           );
         })}

@@ -24,6 +24,8 @@
 .fav_list_items {
     display: flex;
     justify-content: space-between;
+    align-items: baseline;
+    margin: 0;
 }
 
 .favorites__save {
@@ -32,12 +34,6 @@
     padding: 10px 15px;
     color: #FFEEDB;
     font-size: 14px;
-    transition: all 0.2s linear;
-}
-
-.favorites__save:hover {
-    cursor: pointer;
-    opacity: 0.9;
     transition: all 0.2s linear;
 }
 
@@ -50,6 +46,28 @@
 }
 
 .favorites__save:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.del-button {
+    border: none;
+    background-color: #5b76bb;
+    padding: 10px 15px;
+    color: #FFEEDB;
+    font-size: 14px;
+    transition: all 0.2s linear;
+}
+
+.del-button:hover:not(:disabled) {
+    opacity: 0.8;
+    cursor: pointer;
+    transition: all 0.2s linear;
+    background-color: #FFEEDB;
+    color: rgba(0, 8, 7);
+}
+
+.del-button:disabled {
     opacity: 0.5;
     cursor: not-allowed;
 }
