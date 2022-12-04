@@ -7,7 +7,10 @@ const Movies = (props) => {
     <ul className="movies">
       {props.movies.map((movie) => (
         <li className="movies__item" key={movie.imdbID}>
-          <MovieItem {...movie} addMovie={() => props.addFavoriteMovie(movie)} />
+          <MovieItem
+            {...movie}
+            addMovie={() => props.addFavoriteMovie(movie)}
+          />
         </li>
       ))}
     </ul>

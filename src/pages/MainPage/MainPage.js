@@ -19,7 +19,7 @@ const MainPage = () => {
 
     if (responseJson.Search) {
       setMovies(responseJson.Search);
-      console.log(responseJson);
+      // console.log(responseJson);
     }
   };
 
@@ -31,7 +31,7 @@ const MainPage = () => {
     if (!favorites.includes(movie)) {
       const newFavoriteList = [...favorites, movie];
       setFavorites(newFavoriteList);
-      console.log(favorites);
+      // console.log(favorites);
     }
   };
 

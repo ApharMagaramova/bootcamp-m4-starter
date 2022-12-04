@@ -17,6 +17,11 @@
     color: #FFEEDB;
 }
 
+.favorites__name:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
 .favorites__list {
     margin-bottom: 24px;
 }
@@ -57,6 +62,8 @@
     color: #FFEEDB;
     font-size: 14px;
     transition: all 0.2s linear;
+    margin-top: 5px;
+    margin-bottom: 5px;
 }
 
 .del-button:hover:not(:disabled) {

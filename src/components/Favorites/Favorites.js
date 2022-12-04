@@ -1,17 +1,30 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import ListPage from "../../pages/ListPage/ListPage";
 import "./Favorites.css";
 
 const Favorites = (props) => {
   const [title, setTitle] = useState("New List");
   const [movies, setMovies] = useState([]);
+  const [save, setSave] = useState(false);
 
   const changeHandler = (e) => {
     setTitle(e.target.value);
   };
 
   useEffect(() => {
-    setMovies(props.movies);
-  }, [props.movies]);
+    if (!save) {
+      setMovies(props.movies);
+    }
+  }, [props.movies, save]);
+
+  const saveFavorites = () => {
+    if (props.movies.length === 0) {
+      setSave(false);
+    } else {
+      setSave(true);
+    }
+  };
 
   return (
     <div className="favorites">
@@ -21,6 +34,7 @@ const Favorites = (props) => {
         placeholder="Give name to list"
         onChange={changeHandler}
         className="favorites__name"
+        disabled={save}
       />
       <ul className="favorites__list">
         {movies.map((item) => {
@@ -32,6 +46,7 @@ const Favorites = (props) => {
               <button
                 className="del-button"
                 onClick={() => props.deleteFavoriteMovie(item)}
+                disabled={save}
               >
                 X
               </button>
@@ -39,9 +54,18 @@ const Favorites = (props) => {
           );
         })}
       </ul>
-      <button type="button" disabled={!title} className="favorites__save">
-        Save list
-      </button>
+      {!save ? (
+        <button
+          type="button"
+          disabled={!title}
+          className="favorites__save"
+          onClick={saveFavorites}
+        >
+          Save list
+        </button>
+      ) : (
+        <Link to={"/list"}>Go to the List</Link>
+      )}
     </div>
   );
 };
