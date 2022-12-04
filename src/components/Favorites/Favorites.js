@@ -36,22 +36,23 @@ const Favorites = (props) => {
         disabled={save}
       />
       <ul className="favorites__list">
-        {movies.map((item) => {
-          return (
-            <div className="fav_list_items">
-              <li key={item.imdbID}>
-                {item.Title} ({item.Year})
-              </li>
-              <button
-                className="del-button"
-                onClick={() => props.deleteFavoriteMovie(item)}
-                disabled={save}
-              >
-                X
-              </button>
-            </div>
-          );
-        })}
+        {movies &&
+          movies.map((item) => {
+            return (
+              <div className="fav_list_items" key={item.imdbID}>
+                <li>
+                  {item.Title} ({item.Year})
+                </li>
+                <button
+                  className="del-button"
+                  onClick={() => props.deleteFavoriteMovie(item)}
+                  disabled={save}
+                >
+                  X
+                </button>
+              </div>
+            );
+          })}
       </ul>
       {!save ? (
         <button
