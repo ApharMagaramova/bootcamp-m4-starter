@@ -2,7 +2,7 @@ import React from "react";
 import "./MovieItem.css";
 
 const MovieItem = (props) => {
-  const { Title, Year, Poster, clicker } = props;
+  const { Title, Year, Poster, addMovie } = props;
 
   return (
     <article className="movie-item">
@@ -14,7 +14,7 @@ const MovieItem = (props) => {
         <button
           type="button"
           className="movie-item__add-button"
-          onClick={clicker}
+          onClick={addMovie}
         >
           Add to the list
         </button>

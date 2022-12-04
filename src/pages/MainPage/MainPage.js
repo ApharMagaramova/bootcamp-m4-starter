@@ -35,6 +35,14 @@ const MainPage = () => {
     }
   };
 
+  const deleteFavoriteMovie = (movie) => {
+    const newFavoriteList = favorites.filter(
+      (favorite) => favorite.imdbID !== movie.imdbID
+    );
+
+    setFavorites(newFavoriteList);
+  };
+
   return (
     <div className="main-page">
       <Header />
@@ -47,11 +55,14 @@ const MainPage = () => {
             />
           </div>
           <div className="main-page__movies">
-            <Movies movies={movies} clicker={addFavoriteMovie} />
+            <Movies movies={movies} addFavoriteMovie={addFavoriteMovie} />
           </div>
         </section>
         <aside className="main-page__favorites">
-          <Favorites movies={favorites} clicker={addFavoriteMovie} />
+          <Favorites
+            movies={favorites}
+            deleteFavoriteMovie={deleteFavoriteMovie}
+          />
         </aside>
       </main>
     </div>

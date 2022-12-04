@@ -13,13 +13,6 @@ const Favorites = (props) => {
     setMovies(props.movies);
   }, [props.movies]);
 
-  const handleDelete = (imdbID) => {
-    const newList = [...movies];
-    const index = movies.find((item) => item.imdbID === imdbID);
-    newList.splice(index, 1);
-    setMovies(newList);
-  };
-
   return (
     <div className="favorites">
       <input
@@ -36,7 +29,12 @@ const Favorites = (props) => {
               <li key={item.imdbID}>
                 {item.Title} ({item.Year})
               </li>
-              <button onClick={() => handleDelete(item.imdbID)}>X</button>
+              <button
+                className="del-button"
+                onClick={() => props.deleteFavoriteMovie(item)}
+              >
+                X
+              </button>
             </div>
           );
         })}
