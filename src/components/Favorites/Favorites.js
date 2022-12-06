@@ -5,25 +5,25 @@ import "./Favorites.css";
 const Favorites = (props) => {
   const [title, setTitle] = useState("New List");
   const [movies, setMovies] = useState([]);
-  const [save, setSave] = useState(false);
+  // const [save, setSave] = useState(false);
 
   const changeHandler = (e) => {
     setTitle(e.target.value);
   };
 
   useEffect(() => {
-    if (!save) {
+    if (!props.save) {
       setMovies(props.movies);
     }
-  }, [props.movies, save]);
+  }, [props.movies, props.save]);
 
-  const saveFavorites = () => {
-    if (props.movies.length === 0) {
-      setSave(false);
-    } else {
-      setSave(true);
-    }
-  };
+  // const saveFavorites = () => {
+  //   if (props.movies.length === 0) {
+  //     setSave(false);
+  //   } else {
+  //     setSave(true);
+  //   }
+  // };
 
   return (
     <div className="favorites">
@@ -33,7 +33,7 @@ const Favorites = (props) => {
         placeholder="Give name to list"
         onChange={changeHandler}
         className="favorites__name"
-        disabled={save}
+        disabled={props.save}
       />
       <ul className="favorites__list">
         {movies &&
@@ -46,7 +46,7 @@ const Favorites = (props) => {
                 <button
                   className="del-button"
                   onClick={() => props.deleteFavoriteMovie(item)}
-                  disabled={save}
+                  disabled={props.save}
                 >
                   X
                 </button>
@@ -54,12 +54,12 @@ const Favorites = (props) => {
             );
           })}
       </ul>
-      {!save ? (
+      {!props.save ? (
         <button
           type="button"
           disabled={!title}
           className="favorites__save"
-          onClick={saveFavorites}
+          onClick={props.saveFavorites}
         >
           Save list
         </button>

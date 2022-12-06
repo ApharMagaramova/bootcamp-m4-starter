@@ -9,6 +9,7 @@ const MainPage = () => {
   const [movies, setMovies] = useState([]);
   const [searchValue, setSearchValue] = useState("");
   const [favorites, setFavorites] = useState([]);
+  const [save, setSave] = useState(false);
 
   // getting movie list from api
   const getMovieRequest = async (searchValue) => {
@@ -40,7 +41,16 @@ const MainPage = () => {
   };
 
   const addFavoriteMovie = (movie) => {
-    if (!favorites.includes(movie)) {
+    let exits = false;
+
+    favorites.map((item) => {
+      if (item.imdbID === movie.imdbID) {
+        exits = true;
+      }
+      return "";
+    });
+
+    if (!exits && !save) {
       const newFavoriteList = [...favorites, movie];
       setFavorites(newFavoriteList);
       saveToLocalStorage(newFavoriteList);
@@ -55,6 +65,14 @@ const MainPage = () => {
 
     setFavorites(newFavoriteList);
     saveToLocalStorage(newFavoriteList);
+  };
+
+  const saveFavorites = () => {
+    if (favorites.length === 0) {
+      setSave(false);
+    } else {
+      setSave(true);
+    }
   };
 
   return (
@@ -76,6 +94,8 @@ const MainPage = () => {
           <Favorites
             movies={favorites}
             deleteFavoriteMovie={deleteFavoriteMovie}
+            save={save}
+            saveFavorites={saveFavorites}
           />
         </aside>
       </main>
